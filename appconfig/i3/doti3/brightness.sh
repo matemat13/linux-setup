@@ -1,45 +1,56 @@
 #!/bin/bash
 # author: Tomas Baca
+# update: Matous Vrba
 
-INCREMENT=10
+INCREMENT=10 # in percent
 MINIMAL=2
 
-# find the id of my the touchpad
-CURRENT_BRIGHTNESS=`xbacklight | sed -r "s/^(.*)\..*/\1/g"`
+# modified to work without xbacklight
+MAX_BRIGHTNESS=$(cat /sys/class/backlight/*/max_brightness)
+CURRENT_BRIGHTNESS=$(( $(cat /sys/class/backlight/*/actual_brightness)*100/$MAX_BRIGHTNESS ))
 
 if [ $# -eq 0 ]; then
 
-  echo "Current brightness is: $CURRENT_BRIGHTNESS"
+  echo "Current brightness is: $CURRENT_BRIGHTNESS%"
 
 else
 
   # increase brightness
   if [ "$1" = "+" ]; then
 
-    xbacklight -inc "$INCREMENT"
+    if [[ $(( $CURRENT_BRIGHTNESS + $INCREMENT )) -gt 100 ]]; then
 
-    # decrease brightness
+      echo $MAX_BRIGHTNESS > /sys/class/backlight/*/brightness
+
+    else
+
+      echo $(( ($CURRENT_BRIGHTNESS+$INCREMENT)*$MAX_BRIGHTNESS/100 )) > /sys/class/backlight/*/brightness
+
+    fi
+
+  # decrease brightness
   elif [ "$1" = "-" ]; then
 
     if [[ $(( $CURRENT_BRIGHTNESS - $INCREMENT )) -lt $MINIMAL ]]; then
 
-      xbacklight -set "$MINIMAL"
+      echo $(( $MINIMAL*$MAX_BRIGHTNESS/100 )) > /sys/class/backlight/*/brightness
 
     else
 
-      xbacklight -dec "$INCREMENT"
+      echo $(( ($CURRENT_BRIGHTNESS-$INCREMENT)*$MAX_BRIGHTNESS/100 )) > /sys/class/backlight/*/brightness
 
     fi
 
+  # set the user-specified brightness
   else
 
-    xbacklight -set "$1"
+    echo $(( $1*$MAX_BRIGHTNESS/100 )) > /sys/class/backlight/*/brightness
 
   fi
 
 fi
 
-CURRENT_BRIGHTNESS=`xbacklight | sed -r "s/^(.*)\..*/\1/g"`
+CURRENT_BRIGHTNESS=$(( $(cat /sys/class/backlight/*/actual_brightness)*100/$MAX_BRIGHTNESS ))
 if [ $CURRENT_BRIGHTNESS -ge 100 ]; then
 
   notify-send -u low -i mouse "Brightness on MAX"

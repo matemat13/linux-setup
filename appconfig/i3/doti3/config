@@ -230,9 +230,14 @@ bar {
 bindsym $mod+d exec rofi -show run -opacity "85" -width 100 -padding 450 -font "Monospace 18" -lines 5 -eh 1
 
 # bind audio to DELL's special keys
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer set 'Master' 10%-
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set 'Master' 10%+
+# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+# bindsym XF86AudioLowerVolume exec --no-startup-id amixer set 'Master' 10%-
+# bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set 'Master' 10%+
+
+# bind audio to Toshiba specific special keys
+bindcode 121 exec --no-startup-id amixer -D pulse sset 'Master' toggle
+bindcode 122 exec --no-startup-id amixer -D pulse sset 'Master' 5%-
+bindcode 123 exec --no-startup-id amixer -D pulse sset 'Master' 5%+
 
 # bind audio to generic alt+f keys
 bindsym $mod+F5 exec --no-startup-id amixer set 'Master' 10%-
@@ -244,9 +249,16 @@ bindsym $mod+F8 exec --no-startup-id amixer set 'Master' 100%
 # bindsym $mod+F5 exec --no-startup-id amixer -c 1 set 'PCM' 10%-
 # bindsym $mod+F6 exec --no-startup-id amixer -c 1 set 'PCM' 10%+
 
+# Bind keyboard backlight to Toshiba special key
+bindcode 236 exec --no-startup-id sudo ~/.i3/toggle_keyboard_backlight.sh
+
 # Bind screen brightness control to DELLs special keys
-bindsym XF86MonBrightnessDown exec --no-startup-id ~/.i3/brightness.sh - # decrease screen brightness
-bindsym XF86MonBrightnessUp exec --no-startup-id ~/.i3/brightness.sh + # INCREASE Screen brightness
+# bindsym XF86MonBrightnessDown exec --no-startup-id ~/.i3/brightness.sh - # decrease screen brightness
+# bindsym XF86MonBrightnessUp exec --no-startup-id ~/.i3/brightness.sh + # INCREASE Screen brightness
+
+# Bind screen brightness control to Toshiba special keys
+bindcode 232 exec --no-startup-id sudo ~/.i3/brightness.sh - # decrease screen brightness
+bindcode 233 exec --no-startup-id sudo ~/.i3/brightness.sh + # INCREASE Screen brightness
 
 # Bind screen brightness control to general alt+F...
 bindsym $mod+F1 exec --no-startup-id ~/.i3/brightness.sh - # decrease screen brightness

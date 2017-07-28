@@ -6,6 +6,10 @@ snippet mount "" Ab
 sudo mount
 endsnippet
 
+snippet umount "" Ab
+sudo umount
+endsnippet
+
 snippet reboot "" Ab
 sudo reboot
 endsnippet
@@ -76,6 +80,10 @@ endsnippet
 
 snippet "for( )*" "" ir
 for ${1}; do ${2:${VISUAL}}; done
+endsnippet
+
+snippet "while( )*" "" ir
+while ${1}; do ${2:${VISUAL}}; done
 endsnippet
 
 snippet "if( )*" "" ir
@@ -151,4 +159,28 @@ endsnippet
 snippet "rostopic $" "" Abr
 rostopic $1`!p
 snip.rv=complete(t[1], ["echo", "list", "hz", "type"])`
+endsnippet
+
+snippet cdsim "" Ab
+cd ~/git/simulation/start_simulation/
+endsnippet
+
+snippet cdcore "" Ab
+cd ~/mrs_workspace/src/uav_core/ros_nodes
+endsnippet
+
+snippet cdmodules "" Ab
+cd ~/mrs_workspace/src/uav_modules/ros_nodes/
+endsnippet
+
+snippet glog "" Ab
+git log --graph --abbrev-commit --date=relative --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+endsnippet
+
+snippet "c*matrix" "" Arb
+cmatrix -a -b -C blue -u 3
+endsnippet
+
+snippet "cd\.\." "" Ar
+cd ..
 endsnippet

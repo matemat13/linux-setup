@@ -41,6 +41,10 @@ while true; do
     ln -s $APP_PATH/dotvimrc ~/.vimrc
     ln -s $APP_PATH/dotvim ~/.vim
 
+    # install patched fonts with powerline characters
+    cd $APP_PATH/../../submodules/fonts
+    ./install.sh
+
     # add variable for ctags sources into .bashrc
     num=`cat ~/.bashrc | grep "CTAGS_SOURCE_DIR" | wc -l`
     if [ "$num" -lt "1" ]; then
@@ -50,7 +54,7 @@ while true; do
       echo '
 # where should ctags look for sources to parse?
 # -R dir1 -R dir2 ...
-export CTAGS_SOURCE_DIR="-R ~/mrs_workspace -R ~/workspace -R ~/git"' >> ~/.bashrc
+export CTAGS_SOURCE_DIR="-R ~/mrs_workspace -R ~/workspace"' >> ~/.bashrc
 
     fi
 

@@ -1,9 +1,32 @@
+snippet "fold" "" r
+%%\{ ${1}
+
+${2:${VISUAL}}
+
+%%\}
+
+endsnippet
+
+snippet tikzeval "" Ai
+(\$ ${1:${VISUAL}} \$)
+endsnippet
+
+snippet "eq" "" ri
+(\\ref{eq:${1:${VISUAL}}})
+endsnippet
+
 snippet cmd "generic command \{}" i
 \\${1}{${2:${VISUAL}}}
 endsnippet
 
 snippet color "{\color{} }" i
-\{\color{${1}} {${2:${VISUAL}}}}
+\{\color{${1}}
+${2:${VISUAL}}
+}
+endsnippet
+
+snippet "(TODO)|(todo)" "" ir
+\{\color{red} TODO: ${2:${VISUAL}}}
 endsnippet
 
 snippet texttt "\texttt{}" i
@@ -58,7 +81,7 @@ endsnippet
 
 snippet begin "\begin{}" i
 \\begin{${1}}
-${1:${VISUAL}}
+${2:${VISUAL}}
 \\end{$1}
 endsnippet
 
@@ -84,19 +107,45 @@ ${1:${VISUAL}}
 \\end{pmatrix}
 endsnippet
 
-snippet figure "\figure{}" i
+snippet figure "\figure{}"
 \\begin{figure}
 ${1:${VISUAL}}
 \\end{figure}
 endsnippet
 
-snippet figuree "figure with caption etc." i
-\\begin{figure}
-\\centering
-\\includegraphics[width=${1:1.0}\textwidth]{${2}}
-\\caption{${3}}
-\\label{${4}}
+snippet figuree "figure with caption etc."
+\\begin{figure} [h]
+	\\centering
+	\\includegraphics[height=2.0in, width=${1:1.0}\textwidth]{figures/${2}}
+	\\caption{${3}}
+	\\label{fig:${4}}
 \\end{figure}
+endsnippet
+
+snippet jfrfigure "figure, as defined in the JFR tamplate"
+\\begin{figure} [h]
+	\\centering
+	\\includegraphics[width=${1:1.0}\textwidth]{figures/${2}}
+	\\hspace{.2in}
+	\\includegraphics[width=${3:1.0}\textwidth]{figures/${4}}
+	\\caption{${5}}
+	\\label{fig:${6}}
+\\end{figure}
+endsnippet
+
+snippet jfrtable "table as defined in the JFR template"
+\\begin{table}[t]
+\\caption{${1}} \label{${2:sample-table}}
+\\begin{center}
+\\begin{tabular}{${3:|c|c|c|}}
+	\\hline
+	${4:& title1 & title2} \\\\
+	\\hline\hline
+	${5:line1 & foo & bar} \\\\ \\hline
+	\\hline
+\\end{tabular}
+\end{center}
+\\end{table}
 endsnippet
 
 snippet centering "\centering{}" i
@@ -147,11 +196,15 @@ snippet ddot "\ddot{}" i
 \\ddot{${1:${VISUAL}}}
 endsnippet
 
-snippet mathbf "\mathbf{}" i
+snippet mathbf "\mathbf{}" Ai
 \\mathbf{${1:${VISUAL}}}
 endsnippet
 
-snippet mathbb "\mathbb{}" i
+snippet mathrm "\mathrm{}" Ai
+\\mathrm{${1:${VISUAL}}}
+endsnippet
+
+snippet mathbb "\mathbb{}" Ai
 \\mathbb{${1:${VISUAL}}}
 endsnippet
 
@@ -167,8 +220,8 @@ snippet url "\url{}" i
 \\url{${1:${VISUAL}}}
 endsnippet
 
-snippet jed "\jed{}" i
-\\jed{${1:${VISUAL}}}{${2}}
+snippet "(jed)|(unit)" "\unit{}" ir
+\\unit{${1:${VISUAL}}}{${2}}
 endsnippet
 
 snippet transpose "^T" i
@@ -181,7 +234,7 @@ ${1:${VISUAL}}
 \$\$
 endsnippet
 
-snippet inmath "$$" iA
+snippet "inmath" "inline math $ .. $" riA
 \$${1:${VISUAL}}\$
 endsnippet
 
@@ -217,10 +270,22 @@ snippet () "" i
 \\left(${1:${VISUAL}}\\right)
 endsnippet
 
+snippet <> "" i
+\\langle${1:${VISUAL}}\\rangle
+endsnippet
+
 snippet textunderscore "\textunderscore{}" i
 \textunderscore
 endsnippet
 
 snippet bibitem "\bibitem{}" i
 \\bibitem{${1:${VISUAL}}}
+endsnippet
+
+snippet usepackage "\usepackage{}" b
+\\usepackage{${1:${VISUAL}}}
+endsnippet
+
+snippet forall "\forall" Ai
+\\forall ${1}
 endsnippet

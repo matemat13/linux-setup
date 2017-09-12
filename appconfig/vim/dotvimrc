@@ -188,7 +188,7 @@ set softtabstop=2
 set autoindent                  " copy the indention from the last line
 set smartindent                 " sometimes indent extra indention
 set tabstop=2                   " width of the tab character
-set scrolloff=10                " ads cursor margin for the edge of the page
+set scrolloff=3                " ads cursor margin for the edge of the page
 set relativenumber              " turn on relative numbering of lines
 "
 "

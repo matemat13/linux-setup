@@ -264,7 +264,7 @@ exec --no-startup-id nm-applet
 # setup for multiple monitors, generete the required file with "arandr" utility
 exec ~/.monitor.sh
 
-# setup for multiple monitors, generete the required file with "arandr" utility
+# reconfigure the speed of track point on gpd
 exec_always xinput --set-prop 10 273 0.35
 exec_always xinput --set-prop 10 274 0.25
 

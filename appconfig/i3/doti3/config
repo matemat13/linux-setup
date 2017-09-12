@@ -19,7 +19,7 @@ set $mod2 Mod4
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
-font pango:Monospace 10
+font pango:Monospace 9
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -264,6 +264,10 @@ exec --no-startup-id nm-applet
 # setup for multiple monitors, generete the required file with "arandr" utility
 exec ~/.monitor.sh
 
+# setup for multiple monitors, generete the required file with "arandr" utility
+exec_always xinput --set-prop 10 273 0.35
+exec_always xinput --set-prop 10 274 0.25
+
 # swapping keyboard layouts? the same as in unity, win+space
 # man xkeyboard-config will tell you options for keyboard shortcuts
 exec_always --no-startup-id "sleep 4; notify-send -u low -i mouse \"keybard\"; setxkbmap -model pc101 -layout us,cz -variant ,qwerty -option \"grp:rctrl_toggle\";"
@@ -282,12 +286,13 @@ for_window [class="^Thunar$"] floating disable
 for_window [class="^Tk$"] floating enable
 for_window [class="^Octave-gui$"] floating enable
 for_window [class="^Google-chrome$"] floating disabled
+for_window [title="Figure"] floating disabled
 
 # jock session
 bindsym $mod+Shift+x exec ~/.i3/shutdown_menu -p rofi
 
 # enables transparency
-# exec --no-startup-id compton -f -D 3
+exec --no-startup-id compton
 
 # sound-card control
 exec --no-startup-id indicator-sound-switcher
@@ -337,6 +342,9 @@ bindsym $mod2+g exec --no-startup-id gimp
 
 # Qutebroser
 bindsym $mod2+q exec --no-startup-id qutebrowser
+
+# restarting network manager
+bindsym $mod2+n exec ~/.i3/network.sh
 
 # Bindings for Gazebo simulator
 bindsym $mod2+1 exec --no-startup-id gz camera -c gzclient_camera -f uav1

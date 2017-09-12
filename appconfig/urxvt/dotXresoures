@@ -1,6 +1,6 @@
 ! EXTENSIONS are stored at /usr/lib/urxvt/perl
 
-URxvt.font: xft:Ubuntu Mono derivative Powerline:size=13
+URxvt.font: xft:Ubuntu Mono derivative Powerline:size=11
 URxvt.scrollBar: false
 
 URxvt.saveLine: 10000
@@ -10,6 +10,8 @@ URxvt.keysym.C-minus:     resize-font:smaller
 URxvt.keysym.C-plus:      resize-font:bigger
 URxvt.keysym.C-equal:     resize-font:reset
 URxvt.keysym.C-question:  resize-font:show
+
+Xft.dpi: 180
 
 ! shared clipboard
 URxvt.keysym.Shift-Control-V: perl:clipboard:paste

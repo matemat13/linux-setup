@@ -94,10 +94,10 @@ bindsym $mod+a focus parent
 
 # define title/names of all workspaces
 set $workspace1 "1: "
-set $workspace2 "2: "
+set $workspace2 "2: "
 set $workspace3 "3: "
 set $workspace4 "4: "
-set $workspace5 "5: "
+set $workspace5 "5: "
 set $workspace6 "6"
 set $workspace7 "7"
 set $workspace8 "8"
@@ -299,7 +299,7 @@ for_window [class="^Google-chrome$"] floating disabled
 bindsym $mod+Shift+x exec ~/.i3/shutdown_menu -p rofi
 
 # enables transparency
-exec --no-startup-id compton -f -D 3
+exec --no-startup-id compton -f -D 3 --backend glx --vsync opengl
 
 # sound-card control
 exec --no-startup-id indicator-sound-switcher

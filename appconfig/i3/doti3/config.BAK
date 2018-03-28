@@ -226,8 +226,7 @@ bar {
 }
 
 # rofi launcher
-# bindsym $mod+d exec rofi -show run -opacity "85" -width 100 -padding 200 -font "Monospace 18" -lines 5 -eh 1
-bindsym $mod+d exec "rofi -combi-modi drun,run -show combi -opacity '85' -width 100 -padding 200 -font 'Monospace 18' -lines 10 -eh 1"
+bindsym $mod+d exec rofi -show run -opacity "85" -width 100 -padding 200 -font "Monospace 18" -lines 5 -eh 1
 
 # bind audio to DELL's special keys
 # bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
@@ -345,9 +344,6 @@ mode "$mode_gaps" {
 #}
 
 #{ Bindings for external programs
-
-# scrot (for printscreens)
-bindsym Print exec scrot -e 'mv $f /home/matous/Pictures/shots/'
 
 # Gimp
 bindsym $mod2+g exec --no-startup-id gimp

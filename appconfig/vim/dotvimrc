@@ -1,6 +1,7 @@
 set nocompatible              " be iMproved, required by Vundle
 set t_Co=256                  " 256 colors
 set encoding=utf-8
+set lazyredraw
 
 " detects how was vim started... 1=manually, 0=other (athame)
 let g:user_mode = get(g:, 'user_mode', "0")
@@ -496,8 +497,8 @@ endif
 
 " set colorscheme (only in normal vim)
 if g:user_mode == "1"
-  colorscheme jellybeans " JELLYBEANS COLOR_SCHEME ACTIVE
-  " colorscheme raggi " LIGHT COLOR_SCHEME
+  colorscheme jellybeans " JELLYBEANS COLOR_SCHEME ACTIVE 
+  " colorscheme raggi " LIGHT COLOR_SCHEME 
 endif
 
 " if exists, source .my.vimrc
